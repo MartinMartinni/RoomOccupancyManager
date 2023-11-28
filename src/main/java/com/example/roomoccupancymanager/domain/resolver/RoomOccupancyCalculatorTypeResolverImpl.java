@@ -15,8 +15,8 @@ public class RoomOccupancyCalculatorTypeResolverImpl implements IRoomOccupancyCa
     private static final Logger logger = Logger.getLogger(RoomOccupancyCalculatorTypeResolverImpl.class.getName());
 
     @Override
-    public RoomOccupancyCalculatorType resolve(Double bound, Collection<Guest> guests, int freeEconomyRooms, int freePremiumRooms) {
-        final GuestsCategorization categorization = GuestsCategorizationUtil.categorize(bound, guests);
+    public RoomOccupancyCalculatorType resolve(Double boundPrice, Collection<Guest> guests, int freeEconomyRooms, int freePremiumRooms) {
+        final GuestsCategorization categorization = GuestsCategorizationUtil.categorize(boundPrice, guests);
 
         final List<Guest> guestsEconomy = categorization.guestsEconomy();
         final List<Guest> guestsPremium = categorization.guestsPremium();

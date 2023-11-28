@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
 
-    @Value("${bound}")
-    private Double bound;
+    @Value("${bound-price}")
+    private Double boundPrice;
 
     private final IGuestRepository guestRepository;
 
@@ -41,6 +41,6 @@ public class Config {
 
     @Bean
     public IRoomOccupancyService roomOccupancyService() {
-        return new RoomOccupancyServiceImpl(bound, roomOccupancyCalculatorTypeResolver(), roomOccupancyCalculatorFactory(), guestRepository);
+        return new RoomOccupancyServiceImpl(boundPrice, roomOccupancyCalculatorTypeResolver(), roomOccupancyCalculatorFactory(), guestRepository);
     }
 }

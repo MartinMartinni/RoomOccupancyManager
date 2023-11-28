@@ -7,5 +7,5 @@ import java.util.Collection;
 
 public interface IRoomOccupancyCalculatorTypeResolver {
 
-    RoomOccupancyCalculatorType resolve(Double bound, Collection<Guest> guests, int freeEconomyRooms, int freePremiumRooms);
+    RoomOccupancyCalculatorType resolve(Double boundPrice, Collection<Guest> guests, int freeEconomyRooms, int freePremiumRooms);
 }

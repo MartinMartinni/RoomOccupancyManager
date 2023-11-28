@@ -12,8 +12,8 @@ import java.util.List;
 
 public class PremiumInBoundAndEconomyOutOfBoundRoomOccupancyCalculator implements IRoomOccupancyCalculator {
     @Override
-    public RoomOccupancy calculate(double bound, Collection<Guest> guests, int freeEconomyRooms, int freePremiumRooms) {
-        final GuestsCategorization categorization = GuestsCategorizationUtil.categorize(bound, guests);
+    public RoomOccupancy calculate(Double boundPrice, Collection<Guest> guests, int freeEconomyRooms, int freePremiumRooms) {
+        final GuestsCategorization categorization = GuestsCategorizationUtil.categorize(boundPrice, guests);
         final List<Guest> guestsEconomy = categorization.guestsEconomy();
         final List<Guest> guestsPremium = categorization.guestsPremium();
 
