@@ -1,6 +1,6 @@
 package com.example.roomoccupancymanager.domain.service;
 
-import com.example.roomoccupancymanager.domain.exception.BadBoundValueException;
+import com.example.roomoccupancymanager.domain.exception.BadBoundPriceValueException;
 import com.example.roomoccupancymanager.domain.factory.IRoomOccupancyCalculatorFactory;
 import com.example.roomoccupancymanager.domain.model.dto.CalculationRoomOccupancyCommand;
 import com.example.roomoccupancymanager.domain.model.dto.RoomOccupancy;
@@ -52,15 +52,15 @@ class RoomOccupancyServiceImplTest {
     }
 
     @Test
-    void givenBound100AndQuestsPricesAnd3EconomyAnd3PremiumRooms_whenReservationPerform_thenReturn3EconomyAnd3PremiumOccupiedRooms() {
+    void givenBoundPrice100AndQuestsPricesAnd3EconomyAnd3PremiumRooms_whenReservationPerform_thenReturn3EconomyAnd3PremiumOccupiedRooms() {
         // given
-        Double bound = 100d;
+        Double boundPrice = 100d;
 
         int freeEconomyRooms = 3;
         int freePremiumRooms = 3;
 
         // when
-        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(bound, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
+        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(boundPrice, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
 
         // then
         assertEquals(3, roomOccupancy.economyUsage());
@@ -70,15 +70,15 @@ class RoomOccupancyServiceImplTest {
     }
 
     @Test
-    void givenBound100AndQuestsPricesAnd5EconomyAnd7PremiumRooms_whenReservationPerform_thenReturn4EconomyAnd6PremiumOccupiedRooms() {
+    void givenBoundPrice100AndQuestsPricesAnd5EconomyAnd7PremiumRooms_whenReservationPerform_thenReturn4EconomyAnd6PremiumOccupiedRooms() {
         // given
-        Double bound = 100d;
+        Double boundPrice = 100d;
 
         int freeEconomyRooms = 5;
         int freePremiumRooms = 7;
 
         // when
-        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(bound, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
+        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(boundPrice, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
 
         // then
         assertEquals(4, roomOccupancy.economyUsage());
@@ -88,15 +88,15 @@ class RoomOccupancyServiceImplTest {
     }
 
     @Test
-    void givenBound100AndQuestsPricesAnd7EconomyAnd2PremiumRooms_whenReservationPerform_thenReturn4EconomyAnd2PremiumOccupiedRooms() {
+    void givenBoundPrice100AndQuestsPricesAnd7EconomyAnd2PremiumRooms_whenReservationPerform_thenReturn4EconomyAnd2PremiumOccupiedRooms() {
         // given
-        Double bound = 100d;
+        Double boundPrice = 100d;
 
         int freeEconomyRooms = 7;
         int freePremiumRooms = 2;
 
         // when
-        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(bound, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
+        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(boundPrice, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
 
         // then
         assertEquals(4, roomOccupancy.economyUsage());
@@ -106,15 +106,15 @@ class RoomOccupancyServiceImplTest {
     }
 
     @Test
-    void givenBound100AndQuestsPricesAnd1EconomyAnd7PremiumRooms_whenReservationPerform_thenReturn1EconomyAnd7PremiumOccupiedRooms() {
+    void givenBoundPrice100AndQuestsPricesAnd1EconomyAnd7PremiumRooms_whenReservationPerform_thenReturn1EconomyAnd7PremiumOccupiedRooms() {
         // given
-        Double bound = 100d;
+        Double boundPrice = 100d;
 
         int freeEconomyRooms = 1;
         int freePremiumRooms = 7;
 
         // when
-        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(bound, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
+        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(boundPrice, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
 
         // then
         assertEquals(1, roomOccupancy.economyUsage());
@@ -124,15 +124,15 @@ class RoomOccupancyServiceImplTest {
     }
 
     @Test
-    void givenBound23AndQuestsPricesAnd3EconomyAnd3PremiumRooms_whenReservationPerform_thenReturn1EconomyAnd3PremiumOccupiedRooms() {
+    void givenBoundPrice23AndQuestsPricesAnd3EconomyAnd3PremiumRooms_whenReservationPerform_thenReturn1EconomyAnd3PremiumOccupiedRooms() {
         // given
-        Double bound = 23d;
+        Double boundPrice = 23d;
 
         int freeEconomyRooms = 3;
         int freePremiumRooms = 3;
 
         // when
-        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(bound, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
+        final RoomOccupancy roomOccupancy = new RoomOccupancyServiceImpl(boundPrice, calculatorTypeResolver, calculatorFactory, guestRepository).calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms));
 
         // then
         assertEquals(1, roomOccupancy.economyUsage());
@@ -142,16 +142,16 @@ class RoomOccupancyServiceImplTest {
     }
 
     @Test
-    void givenBoundNullAndQuestsPricesAnd3EconomyAnd3PremiumRooms_whenReservationPerform_thenThrowBadBoundValueException() {
+    void givenBoundPriceNullAndQuestsPricesAnd3EconomyAnd3PremiumRooms_whenReservationPerform_thenThrowBadBoundValueException() {
         // given
-        Double bound = null;
+        Double boundPrice = null;
 
         int freeEconomyRooms = 3;
         int freePremiumRooms = 3;
 
         // when and then
-        assertThrows(BadBoundValueException.class,
-                () -> new RoomOccupancyServiceImpl(bound, calculatorTypeResolver, calculatorFactory, guestRepository)
+        assertThrows(BadBoundPriceValueException.class,
+                () -> new RoomOccupancyServiceImpl(boundPrice, calculatorTypeResolver, calculatorFactory, guestRepository)
                         .calculateOccupancy(new CalculationRoomOccupancyCommand(freeEconomyRooms, freePremiumRooms)));
     }
 }

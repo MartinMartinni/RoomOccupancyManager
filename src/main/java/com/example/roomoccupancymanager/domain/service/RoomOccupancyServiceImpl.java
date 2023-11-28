@@ -13,17 +13,17 @@ import java.util.Collection;
 
 public class RoomOccupancyServiceImpl implements IRoomOccupancyService {
 
-    private final Double bound;
+    private final Double boundPrice;
     private final IRoomOccupancyCalculatorTypeResolver calculatorTypeResolver;
     private final IRoomOccupancyCalculatorFactory calculatorFactory;
 
     private final IGuestRepository guestRepository;
 
-    public RoomOccupancyServiceImpl(Double bound,
+    public RoomOccupancyServiceImpl(Double boundPrice,
                                     IRoomOccupancyCalculatorTypeResolver calculatorTypeResolver,
                                     IRoomOccupancyCalculatorFactory calculatorFactory,
                                     IGuestRepository guestRepository) {
-        this.bound = bound;
+        this.boundPrice = boundPrice;
         this.calculatorTypeResolver = calculatorTypeResolver;
         this.calculatorFactory = calculatorFactory;
         this.guestRepository = guestRepository;
@@ -32,9 +32,9 @@ public class RoomOccupancyServiceImpl implements IRoomOccupancyService {
     @Override
     public RoomOccupancy calculateOccupancy(CalculationRoomOccupancyCommand command) {
         final Collection<Guest> guests = guestRepository.findAll();
-        final RoomOccupancyCalculatorType roomOccupancyCalculatorType = calculatorTypeResolver.resolve(bound,
+        final RoomOccupancyCalculatorType roomOccupancyCalculatorType = calculatorTypeResolver.resolve(boundPrice,
                 guests, command.freeEconomyRooms(), command.freePremiumRooms());
         final IRoomOccupancyCalculator calculator = calculatorFactory.create(roomOccupancyCalculatorType);
-        return calculator.calculate(bound, guests, command.freeEconomyRooms(), command.freePremiumRooms());
+        return calculator.calculate(boundPrice, guests, command.freeEconomyRooms(), command.freePremiumRooms());
     }
 }

@@ -1,6 +1,6 @@
 package com.example.roomoccupancymanager.domain.utils;
 
-import com.example.roomoccupancymanager.domain.exception.BadBoundValueException;
+import com.example.roomoccupancymanager.domain.exception.BadBoundPriceValueException;
 import com.example.roomoccupancymanager.domain.model.dto.GuestsCategorization;
 import com.example.roomoccupancymanager.domain.model.entity.Guest;
 import com.example.roomoccupancymanager.domain.model.valueobject.GuestId;
@@ -17,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class GuestsCategorizationUtilTest {
 
     @Test
-    void givenBoundAndGuests_whenCategorizationPerform_thenReturnGuestsCategorization() {
+    void givenBoundPriceAndGuests_whenCategorizationPerform_thenReturnGuestsCategorization() {
 
         //given
-        Double bound = 100d;
+        Double boundPrice = 100d;
         final List<Guest> guests = Arrays.asList(
                 new Guest(new GuestId(UUID.randomUUID()), new Money(BigDecimal.valueOf(23))),
                 new Guest(new GuestId(UUID.randomUUID()), new Money(BigDecimal.valueOf(45))),
@@ -34,7 +34,7 @@ class GuestsCategorizationUtilTest {
                 new Guest(new GuestId(UUID.randomUUID()), new Money(BigDecimal.valueOf(209))));
 
         //when
-        final GuestsCategorization categorization = GuestsCategorizationUtil.categorize(bound, guests);
+        final GuestsCategorization categorization = GuestsCategorizationUtil.categorize(boundPrice, guests);
 
         //then
         final List<Guest> guestsEconomy = categorization.guestsEconomy();
@@ -47,15 +47,15 @@ class GuestsCategorizationUtilTest {
     }
 
     @Test
-    void givenBoundNullAndGuests_whenCategorizationPerform_thenThrowBadBoundValueException() {
+    void givenBoundPriceNullAndGuests_whenCategorizationPerform_thenThrowBadBoundValueException() {
         //given
-        Double bound = null;
+        Double boundPrice = null;
         final List<Guest> guests = Arrays.asList(
                 new Guest(new GuestId(UUID.randomUUID()), new Money(BigDecimal.valueOf(23))),
                 new Guest(new GuestId(UUID.randomUUID()), new Money(BigDecimal.valueOf(45))));
 
         //when and then
-        assertThrows(BadBoundValueException.class,
-                () -> GuestsCategorizationUtil.categorize(bound, guests));
+        assertThrows(BadBoundPriceValueException.class,
+                () -> GuestsCategorizationUtil.categorize(boundPrice, guests));
     }
 }
